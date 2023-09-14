@@ -1,0 +1,7 @@
+First connect to the website 
+  http://natas1.natas.labs.overthewire.org
+Log in with the Username: natas1 and the Password: g9D9cREhslqBKtcA2uocGHPfMZVzeFK6
+It states that "You can find the password for the next level on this page, but rightclicking has been blocked!"
+The word "page" stand out here. Since we obviously cannot see a password on the webpage, my first step is to check the source code for the webpage.
+  Usually you can right click here and inspect the source code, however that has been disabled. Another way to view the pages source code is to hit the f12 button on your keyboard.
+The password for natas2 is sitting right there in a source code comment.
