@@ -1,0 +1,8 @@
+First connect to the website 
+  http://natas3.natas.labs.overthewire.org
+Log in with the Username: natas3 and the Password: nG6ctbMJ5Nb4cbFwhpMPSvxGHhQ7I6W8Q
+It states that "There is nothing on this page"
+Again, nothing. Time to inspect the source code. An interesting comment sticks out to me "No more information leaks!! Not even Google will find it this time..."
+Not even Google will find it? But Google knows everything. This means that Google can't, or isn't allowed, to find this. robots.txt tells search engines like Google which directories they are not allowed to show.
+So my first step is to go to http://natas3.natas.labs.overthewire.org/robots.txt. Here I find a file that is on the disallow list called /s3cr3t/. So I change my URl to http://natas3.natas.labs.overthewire.org/s3cr3t/ and I find another users.txt file.
+  Within that file we find the password for natas4.
