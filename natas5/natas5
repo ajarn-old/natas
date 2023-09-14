@@ -1,0 +1,7 @@
+First connect to the website 
+  http://natas5.natas.labs.overthewire.org
+Log in with the Username: natas5 and the Password: Z0NsrtIkJoKALBCLi5eqFfcRN82Au2oD
+It states "Access disallowed. You are not logged in"
+This is odd since that is exactly what we just did. I know that browsers have the ability to maintain login information through the use of cookies.
+After checking, I find that there is a cookie with a value of 0. I simply changed the value from 0 to 1.
+  Access granted. 
