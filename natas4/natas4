@@ -1,0 +1,6 @@
+First connect to the website 
+  http://natas4.natas.labs.overthewire.org
+Log in with the Username: natas4 and the Password: tKOcJIbzM4lTs8hbCmzn5Zr4434fGZQm
+It states that "Access disallowed. You are visiting from "http://natas4.natas.labs.overthewire.org/index.php" while authorized users should come only from "http://natas5.natas.labs.overthewire.org/""
+I need to be able to trick the web application into thinking I am coming from another website. I use Referer Control on Google Chrome to change the web address that I am visiting from to http://natas5.natas.labs.overthewire.org/.
+  After a quick refresh, I have been given access to the natas5 password.
