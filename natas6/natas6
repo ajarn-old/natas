@@ -1,0 +1,8 @@
+First connect to the website 
+  http://natas6.natas.labs.overthewire.org
+Log in with the Username: natas6 and the Password: fOIvE0MDtPTgRhqmmvvAOt2EfXR6uQgR
+On this page we see three things. "Input secret" and a space for characeters, a submit button, and a view sourcecode button.
+Seeing as we do not know the secret, I choose to click on the View sourcecode button. Here we see a simple script that checks the secret value submitted to the secret value in the secret.inc file.
+The easiest way I can think of to find this script is to simple try and check if we can access the secret.inc file. So I change the URL to http://natas6.natas.labs.overthewire.org/includes/secret.inc
+Here we find the secret written in plaintext $secret = "FOEIUWGHFEEUHOFUOIU";
+  Going back to the main natas6 web page, I enter the now known secret and our new password is granted.
