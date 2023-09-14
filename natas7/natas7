@@ -1,6 +1,6 @@
 First connect to the website 
   http://natas7.natas.labs.overthewire.org
-Log in with the Username: natas7 and the Password: fOIvE0MDtPTgRhqmmvvAOt2EfXR6uQgR
+Log in with the Username: natas7 and the Password: jmxSiH3SP6Sonf8dv66ng8v1cIEdjXWr
 Here we see two links that go to the "Home" page and the "About" page. After clicking on each one, I see in the URL that the index.php script is calling the "Home" and "About" page from the host system.
 Sometimes a vulnerability can exist that allows the php script to call anything written in the URL after 'page='. Without knowing exactly where to go next, I check the source code for the web page. 
 Here I see a hint that says "hint: password for webuser natas8 is in /etc/natas_webpass/natas8". This could be a file that the index.php script can call, so I change the target of the index.php script to hint: password for webuser natas8 is in /etc/natas_webpass/natas8.
