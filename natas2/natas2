@@ -1,0 +1,8 @@
+First connect to the website 
+  http://natas2.natas.labs.overthewire.org
+Log in with the Username: natas2 and the Password: h4ubbcXrWqsTo7GGnnUMLppXbOogfBZ7
+It states that "There is nothing on this page "
+Nothing here stands out as an obvious hint as to where to find the password. So I continue to do what I've done before, inspect the source code for the webpage. I do not see a password, but I do see something else that is odd, a 1x1 pixel image.
+A single pixel is extremely small and you would not typciall find a 1x1 picture used on a website, so I click on the source for the image. This takes you to a new web page ending in /files/pixel.png. No password here, but I do see something in the web address that peaks
+my interest. A directory. I delete the pixel.png from /files/pixel.png and see if I can access the /files/ directory. A new web page loads with the pixel.png file and a users.txt file. 
+I click on the users.txt file and within I find the natas3 password.
