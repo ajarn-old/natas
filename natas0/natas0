@@ -1,0 +1,7 @@
+First connect to the website 
+  http://natas0.natas.labs.overthewire.org
+Log in with the Username: natas0 and the Password: natas0
+It states that "You can find the password for the next level on this page."
+The word "page" stand out here. Since we obviously cannot see a password on the webpage, my first step is to check the source code for the webpage.
+  Right click, Inspect.
+The password for natas1 is sitting right there in a source code comment.
