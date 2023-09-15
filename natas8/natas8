@@ -1,0 +1,11 @@
+First connect to the website 
+  http://natas8.natas.labs.overthewire.org
+Log in with the Username: natas8 and the Password: a6bZCNYwdKqN5cGP11ZdtPg0iImQQhAB
+After logging in, we see an Input secret field, a submit button, and a view sourcecode link. Clicking submit with nothing in the input box gives back a wrong secret message.
+After clicking on the view sourcecode link, we see the alogorithim script used to encrypt the secret and the encoded secret itself. 
+$encodedSecret = "3d3d516343746d4d6d6c315669563362";
+function encodeSecret($secret) {
+    return bin2hex(strrev(base64_encode($secret)));
+Using the reverse process the first thing I did was take the encoded hex and convert it to a string. Then, we reverse the string order. Finally, we use base64 to decode the string. 
+This gives us the secret oubWYf2kBq
+After entering that secret into the input box and clicking submit, we are granted access to the natas9 password.
