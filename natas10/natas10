@@ -1,0 +1,26 @@
+First connect to the website 
+  http://natas10.natas.labs.overthewire.org
+Log in with the Username: natas10 and the Password: D44EcsFkLxPIkAAKLosx8z3hxX1Z4MCE
+After logging in, we see a search field with the context of "Find words containing", and "Output" area, a view sourcecode link, and an additional phrase "For security reasons, we now filter on certain characters". 
+This is very similar to natas9, however the sourcecode is slightly different.
+After clicking on the view sourcecode link, we see the alogorithim script used to search a dictionary.txt file for words containing a letter or string of letters. 
+
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i $key dictionary.txt");
+    }
+}
+?>
+
+This script still uses passthru() except it filters out the '/[;|$]/' characters. This means we will have to force grep to return our natas 11 password.
+Because we know where the passwords are stored, we know that we will need to grep the /etc/natas_webpass/natas11 file. The * option for grep will return anything before or after your parameters. 
+  n* /etc/natas_webpass/natas11 outputs the natas11 password.
