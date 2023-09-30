@@ -1,0 +1,24 @@
+First connect to the website 
+  http://natas9.natas.labs.overthewire.org
+Log in with the Username: natas9 and the Password: Sda6t0vkOPkM8YeOZkAGVhFoaplvlJFd
+After logging in, we see a search field with the context of "Find words containing", and "Output" area, and a view sourcecode link. Clicking submit with nothing in the input box gives back nothing.
+Searching for "a" in the serch field gives an output of words containing the letter 'a'.
+After clicking on the view sourcecode link, we see the alogorithim script used to search a dictionary.txt file for words containing a letter or string of letters. 
+
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    passthru("grep -i $key dictionary.txt");
+}
+?>
+
+One function stands out as a possibly exploitable vulnerability, and that is the passthru() function.
+  This function does not check the input, so we can exploit this by inputting a command and telling passthru to ignore everything else in the original script.
+We try ; ls and see that works to list the contents of the directory. Now our job is to start digging around and looking for something useful.
+  One of the best places to find information pertaining to passwords is also the /etc/ directory. ; ls /etc/ reveals a natas_webpass directory. Inside is a natas10 file.
+; cat /etc/natas_webpass/natas10 outputs the natas10 password.
