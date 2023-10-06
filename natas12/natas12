@@ -1,0 +1,11 @@
+First connect to the website 
+  http://natas12.natas.labs.overthewire.org
+Log in with the Username: natas12 and the Password: YWqo0pjpcXzSIl5NMAVxg12QxeC1w9QG
+After logging in, we see a 'Choose File' button and an "Upload File' button with the instructions to 'Choose a JPEG to upload 9max 1KB):'. 
+This is very similar to a project I have done in the past. You need to upload a script instead of a jpg. 
+Step 1: Make sure the website accepts file uploads other than .jpg. Inspect the web page and change vallue="p12j9x5ecd.jpg" to vallue="p12j9x5ecd.php"
+Step 2: Create a simple php script that can echo the desired password. We know what to use and where to look thanks to an earlier natas challenge.
+  <?php
+  echo passthru('cat /etc/natas_webpass/natas13'); 
+  ?>
+Step 3: Upload your php script. The output is the password for natas 13.
