@@ -1,0 +1,29 @@
+First connect to the website 
+  http://natas14.natas.labs.overthewire.org
+Log in with the Username: natas14 and the Password: qPazSJBmrmU7UQJv17MHk1PGC4DxZMEP
+After logging in, we see a Username' and 'Password' field with the 'Login' button. 
+With no extra instructions, the best thing we can do at this point is to view the sourcecode. 
+
+<?php
+if(array_key_exists("username", $_REQUEST)) {
+    $link = mysqli_connect('localhost', 'natas14', '<censored>');
+    mysqli_select_db($link, 'natas14');
+
+    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and password=\"".$_REQUEST["password"]."\"";
+    if(array_key_exists("debug", $_GET)) {
+        echo "Executing query: $query<br>";
+    }
+
+    if(mysqli_num_rows(mysqli_query($link, $query)) > 0) {
+            echo "Successful login! The password for natas15 is <censored><br>";
+    } else {
+            echo "Access denied!<br>";
+    }
+    mysqli_close($link);
+} else {
+?>
+
+Here we see an array that uses SQL querys to check for a username and password. This immediately brings me to an SQL injection attack.
+A typical Username to use in a SQL injection attack is 'admin' and the password is 123" OR "1"="1.
+Using this default template works. Successful login! 
+  Password for natas15 granted.
