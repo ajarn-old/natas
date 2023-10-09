@@ -1,1 +1,25 @@
+First connect to the website 
+  http://natas16.natas.labs.overthewire.org
+Log in with the Username: natas16 and the Password: TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V
+After logging in, we see a 'Find words containing' field, a 'Search' button, and an "Output:' area. In addition, we now have additional instructions stating 'For security reasons, we now filter even more on certain characters'.
+Opening the sourcecode shows that we are dealing with something similar to natas9 and 10, but even more characters are being filtered out.
+
+<?
+$key = "";
+
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];
+}
+
+if($key != "") {
+    if(preg_match('/[;|&`\'"]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i \"$key\" dictionary.txt");
+    }
+}
+?>
+
+
+
 XkEuChE0SbnKBvH1RU7ksIb9uuLmI7sd
