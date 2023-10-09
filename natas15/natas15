@@ -1,1 +1,45 @@
-TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V 
+First connect to the website 
+  http://natas15.natas.labs.overthewire.org
+Log in with the Username: natas12 and the Password: TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V 
+After logging in, we see a 'Username' field and a 'Check existence' button. After clicking on view sourcecode we can see that we have a few things to go from.
+
+<?php
+
+/*
+CREATE TABLE `users` (
+  `username` varchar(64) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL
+);
+*/
+
+if(array_key_exists("username", $_REQUEST)) {
+    $link = mysqli_connect('localhost', 'natas15', '<censored>');
+    mysqli_select_db($link, 'natas15');
+
+    $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\"";
+    if(array_key_exists("debug", $_GET)) {
+        echo "Executing query: $query<br>";
+    }
+
+    $res = mysqli_query($link, $query);
+    if($res) {
+    if(mysqli_num_rows($res) > 0) {
+        echo "This user exists.<br>";
+    } else {
+        echo "This user doesn't exist.<br>";
+    }
+    } else {
+        echo "Error in query.<br>";
+    }
+
+    mysqli_close($link);
+} else {
+?>
+
+  1. We have a table called 'users' with two columns. Column one is username and column two is password.
+  2. An SQL queries the array for the existence of a username. 
+  3. The results come back as This user exists, This user doesn't exist, Error in query.
+Based on this information, I know I am dealing with a blind SQL injection. However, I found this to be quite difficult. This took me some time.
+I first started by trying to use burp suite to intercept the traffic and then send a cluster bomb attack to the server. For some reason this was not working.
+My second attempt was to use sqlmap. It took me a while to learn how this works, but eventually I was able to come up with a command that wouldn't overload the server, and it would output the password for natas16
+  sqlmap --delay=0.5 --auth-type=Basic --auth-cred=natas15:TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V -u http://natas15.natas.labs.overthewire.org/index.php --method=POST --data "username=natas16" --dbms=mysql -b --technique=B --string="This user exists" --level 5 -D natas15 -T users -C username,password --dump --batch
