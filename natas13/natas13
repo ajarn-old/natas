@@ -1,0 +1,14 @@
+First connect to the website 
+  http://natas13.natas.labs.overthewire.org
+Log in with the Username: natas13 and the Password: D44EcsFkLxPIkAAKLosx8z3hxX1Z4MCE
+After logging in, we see the same instructions from natas12, including a 'Choose File' button and an "Upload File' button with the instructions to 'Choose a JPEG to upload 9max 1KB):'.
+The difference this time is that an additional security tag as been added 'For security reasons, we now only accept image files!'
+Now we must figure out how to trick the filter into thinking our php script is .jpg image.
+Step 1: Same as natas 12, we need to make sure the website accepts file uploads other than .jpg. Inspect the web page and change vallue="g5viynuyt3.jpg" to vallue="g5viynuyt3.php"
+Step 2: Create a simple php script that can echo the desired password. We know what to use and where to look thanks to an earlier natas challenge.
+  <?php
+  echo passthru('cat /etc/natas_webpass/natas14'); 
+  ?>
+Step 3: Since the website now filters for a .jpg signature, we need to use a hex editor like https://hexed.it/ to edit your .php scrit so that it looks like a .jpg instead. We know what hex signature to add to the front of the .php file thanks to https://en.wikipedia.org/wiki/List_of_file_signatures is FF D8 FF E0.
+Step 4: Upload your edited script.
+  Now we have access to the natas14 password.
